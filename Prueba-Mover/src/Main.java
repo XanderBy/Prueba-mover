@@ -1,9 +1,10 @@
+import Pantalla.Pantalla;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Pantalla p=new Pantalla();
+		p.setVisible(true);
 	}
 
 }
