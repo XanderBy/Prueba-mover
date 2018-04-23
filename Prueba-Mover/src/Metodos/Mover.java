@@ -5,7 +5,7 @@ import ClasesPojos.Personaje;
 public class Mover {
 
 	public static void moverAdelante(Personaje p) {
-		p.setPosicionY(p.getPosicionY()-1);
+		p.setPosicionY(p.getPosicionY()-10);
 	}
 	public static void moverAbajo(Personaje p) {
 		p.setPosicionY(p.getPosicionY()+1);

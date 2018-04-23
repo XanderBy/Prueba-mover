@@ -16,13 +16,13 @@ public class Personaje {
 	}
 	
 	
-	public static void cuerpoPersonaje(Graphics g) {
+	public void cuerpoPersonaje(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.RED);
-		g2d.fillRect(500, 50, 30, 30);
-		g2d.drawRect(500, 50, 30, 30);
+		g2d.fillRect(this.getPosicionX(), this.getPosicionY(), 30, 30);
+		g2d.drawRect(this.getPosicionX(), this.getPosicionY(), 30, 30);
 	}
-
+	
 	public int getPosicionX() {
 		return posicionX;
 	}
