@@ -8,12 +8,12 @@ public class Mover {
 		p.setPosicionY(p.getPosicionY()-10);
 	}
 	public static void moverAbajo(Personaje p) {
-		p.setPosicionY(p.getPosicionY()+1);
+		p.setPosicionY(p.getPosicionY()+10);
 	}
 	public static void moverDerecha(Personaje p) {
-		p.setPosicionY(p.getPosicionX()+1);
+		p.setPosicionX(p.getPosicionX()+10);
 	}
 	public static void moverIzquierda(Personaje p) {
-		p.setPosicionY(p.getPosicionY()-1);
+		p.setPosicionX(p.getPosicionX()-10);
 	}
 }

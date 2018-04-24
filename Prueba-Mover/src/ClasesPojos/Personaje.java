@@ -21,6 +21,7 @@ public class Personaje {
 		g2d.setColor(Color.RED);
 		g2d.fillRect(this.getPosicionX(), this.getPosicionY(), 30, 30);
 		g2d.drawRect(this.getPosicionX(), this.getPosicionY(), 30, 30);
+		
 	}
 	
 	public int getPosicionX() {
