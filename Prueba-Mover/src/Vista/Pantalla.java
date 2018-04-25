@@ -1,18 +1,22 @@
-package Pantalla;
+package Vista;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
+import javax.swing.GroupLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
-import ClasesPojos.Personaje;
-import Metodos.Mover;
+import Modelo.MetodosBasicosPersonaje;
+import Modelo.Personaje;
 
 public class Pantalla extends JFrame implements KeyListener, Runnable {
 
@@ -20,21 +24,22 @@ public class Pantalla extends JFrame implements KeyListener, Runnable {
 	Personaje p = new Personaje(tamañoPantalla.width / 2, tamañoPantalla.height / 2, 10);
 
 	private Canvas canvas;
-	private Thread thread;//Se crea un hilo para poder permitir procesos secundarios
+	private Thread thread;// Se crea un hilo para poder permitir procesos secundarios
 	private boolean running = false;
-	private BufferStrategy bs;//Es el espacio que se deja en la memoria
+	private BufferStrategy bs;// Es el espacio que se deja en la memoria
 	private Graphics g;
 
 	public Pantalla() {
 		super();
 		configurarPantalla();
 		addKeyListener(this);
-
+		initComponents();
+		
 	}
 
 	private void configurarPantalla() {
 		this.setTitle("Prueba movimiento"); // colocamos titulo a la ventana
-		this.setSize(tamañoPantalla.width, tamañoPantalla.height); // colocamos tamanio a la ventana (ancho, alto)
+		this.setSize(tamañoPantalla.width, tamañoPantalla.height-50); // colocamos tamanio a la ventana (ancho, alto)
 		this.setLocationRelativeTo(null); // centramos la ventana en la pantalla
 		this.setResizable(true); // hacemos que la ventana no sea redimiensio.nable
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,7 +52,9 @@ public class Pantalla extends JFrame implements KeyListener, Runnable {
 		canvas.setFocusable(true);// Para poder recibir eventos por el teclado
 		add(canvas);
 	}
-
+	private void initComponents() {
+		
+	}
 	private void update() {
 
 	}
@@ -56,12 +63,13 @@ public class Pantalla extends JFrame implements KeyListener, Runnable {
 		bs = canvas.getBufferStrategy();
 
 		if (bs == null) {
-			canvas.createBufferStrategy(3);//Si es nulo se crearan 3 espacios en la memoria atras(renderiza) medio(procesa) frente(donde muestra)
+			canvas.createBufferStrategy(3);// Si es nulo se crearan 3 espacios en la memoria atras(renderiza)
+											// medio(procesa) frente(donde muestra)
 			return;
 		}
 
 		g = bs.getDrawGraphics();
-
+		
 		g.clearRect(0, 0, tamañoPantalla.width, tamañoPantalla.height);// Limpia la pantalla para que no deje rastro
 		p.cuerpoPersonaje(g);// Pinta el cuerpo del personaje
 
@@ -81,14 +89,14 @@ public class Pantalla extends JFrame implements KeyListener, Runnable {
 	}
 
 	public void start() {
-		thread = new Thread(this);//creas un hilo solo para la pantalla 
-		thread.start();//inicias el hilo
+		thread = new Thread(this);// creas un hilo solo para la pantalla
+		thread.start();// inicias el hilo
 		running = true;
 	}
 
 	public void stop() {
 		try {
-			thread.join();//El hilo muere
+			thread.join();// El hilo muere
 			running = false;
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -96,36 +104,34 @@ public class Pantalla extends JFrame implements KeyListener, Runnable {
 		}
 	}
 
-	
-	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.VK_W == e.getKeyCode()) {// Si la tecla presionada es igual a W
-			Mover.moverAdelante(p);
-			
+
+			MetodosBasicosPersonaje.moverAdelante(p);
+
 			System.out.println(p.getPosicionY());
 			repaint();// llama a paint para que siga avanzando
 
 		}
-		if (e.VK_A == e.getKeyCode()) {// Si la tecla presionada es igual a W
-
-			Mover.moverIzquierda(p);
-			
+		if (e.VK_A == e.getKeyCode()) {// Si la tecla presionada es igual a a
+			MetodosBasicosPersonaje.moverIzquierda(p);
 			System.out.println(p.getPosicionX());
 			repaint();// llama a paint para que siga avanzando
 
 		}
-		if (e.VK_S == e.getKeyCode()) {// Si la tecla presionada es igual a W
-			Mover.moverAbajo(p);
+		if (e.VK_S == e.getKeyCode()) {// Si la tecla presionada es igual a s
 
-			
+			MetodosBasicosPersonaje.moverAbajo(p);
+
 			System.out.println(p.getPosicionY());
 			repaint();// llama a paint para que siga avanzando
 
 		}
-		if (e.VK_D == e.getKeyCode()) {// Si la tecla presionada es igual a W
-			Mover.moverDerecha(p);
+		if (e.VK_D == e.getKeyCode()) {// Si la tecla presionada es igual a d
+
+			MetodosBasicosPersonaje.moverDerecha(p);
 
 			System.out.println(p.getPosicionX());
 			repaint();// llama a paint para que siga avanzando
