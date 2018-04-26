@@ -8,7 +8,6 @@ public class Personaje {
 	private int posicionX;
 	private int posicionY;
 	private int vida;
-	private int velocidad;
 	public Personaje(int posicionX, int posicionY, int vida) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;

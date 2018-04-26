@@ -1,19 +1,14 @@
 package Vista;
 
 import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
-import javax.swing.GroupLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import Modelo.MetodosBasicosPersonaje;
 import Modelo.Personaje;
@@ -55,7 +50,7 @@ public class Pantalla extends JFrame implements KeyListener, Runnable {
 	private void initComponents() {
 		
 	}
-	private void update() {
+	private void update() {//Aqui dentro iría cosas automaticas
 
 	}
 
@@ -72,7 +67,7 @@ public class Pantalla extends JFrame implements KeyListener, Runnable {
 		
 		g.clearRect(0, 0, tamañoPantalla.width, tamañoPantalla.height);// Limpia la pantalla para que no deje rastro
 		p.cuerpoPersonaje(g);// Pinta el cuerpo del personaje
-
+		g.drawString("Primera Prueba", tamañoPantalla.width-200, tamañoPantalla.height-100);
 		g.dispose();
 		bs.show();
 
